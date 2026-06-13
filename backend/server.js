@@ -7,7 +7,7 @@ const path = require("path");
 require("dotenv").config();
 
 const Multimedia =
-require("./models/Multimedia");
+require("./models/multimedia");
 
 const app = express();
 
