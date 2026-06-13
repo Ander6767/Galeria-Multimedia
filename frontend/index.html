@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>
+Galería Multimedia
+</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body class="bg-gray-100 p-8">
+
+<div
+class="max-w-2xl mx-auto bg-white p-6 rounded shadow">
+
+<h1
+class="text-3xl font-bold mb-4">
+
+Galería Multimedia NoSQL
+
+</h1>
+
+<form id="formulario">
+
+<input
+type="text"
+id="titulo"
+placeholder="Título"
+required
+class="w-full border p-2 mb-2">
+
+<textarea
+id="descripcion"
+placeholder="Descripción"
+class="w-full border p-2 mb-2">
+</textarea>
+
+<input
+type="file"
+id="imagen"
+accept="image/*"
+required
+class="mb-2">
+
+<input
+type="file"
+id="audio"
+accept="audio/*"
+required
+class="mb-2">
+
+<button
+class="bg-blue-600 text-white p-2 rounded">
+
+Guardar
+
+</button>
+
+</form>
+
+<hr class="my-5">
+
+<div id="lista"></div>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
