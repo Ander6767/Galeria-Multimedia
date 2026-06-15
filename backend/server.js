@@ -3,6 +3,11 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const multer = require("multer");
 const path = require("path");
+const fs = require("fs");
+
+if (!fs.existsSync("uploads")) {
+    fs.mkdirSync("uploads");
+}
 
 require("dotenv").config();
 
