@@ -1,5 +1,5 @@
 const API =
-"http://localhost:3000/api/multimedia";
+"https://galeria-multimedia.onrender.com/api/multimedia";
 
 const formulario =
 document.getElementById(
