@@ -65,6 +65,51 @@ Guardar
 
 <hr class="my-5">
 
+<h2 class="text-2xl font-bold mt-6 mb-2">
+Editar Multimedia
+</h2>
+
+<form
+id="formEditar"
+style="display:none;"
+class="border p-4 rounded">
+
+<input
+type="text"
+id="editTitulo"
+placeholder="Título"
+class="w-full border p-2 mb-2">
+
+<textarea
+id="editDescripcion"
+placeholder="Descripción"
+class="w-full border p-2 mb-2">
+</textarea>
+
+<input
+type="file"
+id="editImagen"
+accept="image/*"
+class="mb-2">
+
+<input
+type="file"
+id="editAudio"
+accept="audio/*"
+class="mb-2">
+
+<br>
+
+<button
+type="submit"
+class="bg-green-600 text-white p-2 rounded">
+
+Guardar Cambios
+
+</button>
+
+</form>
+
 <div id="lista"></div>
 
 </div>

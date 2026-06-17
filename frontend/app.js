@@ -1,3 +1,4 @@
+let idEditar = null;
 const API =
 "https://galeria-multimedia.onrender.com/api/multimedia";
 
@@ -141,57 +142,99 @@ cargar();
 
 }
 
-async function editar(
+function editar(
 id,
-tituloActual,
-descripcionActual
+titulo,
+descripcion
 ){
 
-const nuevoTitulo =
-prompt(
-"Nuevo título:",
-tituloActual
-);
+idEditar = id;
 
-if(
-nuevoTitulo === null
-)
-return;
+document.getElementById(
+"editTitulo"
+).value = titulo;
 
-const nuevaDescripcion =
-prompt(
-"Nueva descripción:",
-descripcionActual
-);
+document.getElementById(
+"editDescripcion"
+).value = descripcion;
 
-if(
-nuevaDescripcion === null
-)
-return;
-
-await fetch(
-API + "/" + id,
-{
-method:"PUT",
-
-headers:{
-"Content-Type":
-"application/json"
-},
-
-body:JSON.stringify({
-
-titulo:nuevoTitulo,
-
-descripcion:nuevaDescripcion
-
-})
+document.getElementById(
+"formEditar"
+).style.display = "block";
 
 }
+
+document.getElementById(
+"formEditar"
+).addEventListener(
+"submit",
+async(e)=>{
+
+e.preventDefault();
+
+const formData =
+new FormData();
+
+formData.append(
+"titulo",
+document.getElementById(
+"editTitulo"
+).value
 );
+
+formData.append(
+"descripcion",
+document.getElementById(
+"editDescripcion"
+).value
+);
+
+const imagen =
+document.getElementById(
+"editImagen"
+).files[0];
+
+if(imagen){
+
+formData.append(
+"imagen",
+imagen
+);
+
+}
+
+const audio =
+document.getElementById(
+"editAudio"
+).files[0];
+
+if(audio){
+
+formData.append(
+"audio",
+audio
+);
+
+}
+
+await fetch(
+API + "/" + idEditar,
+{
+method:"PUT",
+body:formData
+}
+);
+
+document.getElementById(
+"formEditar"
+).reset();
+
+document.getElementById(
+"formEditar"
+).style.display = "none";
 
 cargar();
 
-}
+});
 
 cargar();

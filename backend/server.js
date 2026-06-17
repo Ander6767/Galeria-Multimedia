@@ -75,11 +75,15 @@ descripcion:
 req.body.descripcion,
 
 imagenUrl:
-"http://localhost:3000/uploads/" +
+req.protocol + "://" +
+req.get("host") +
+"/uploads/" +
 req.files.imagen[0].filename,
 
 audioUrl:
-"http://localhost:3000/uploads/" +
+req.protocol + "://" +
+req.get("host") +
+"/uploads/" +
 req.files.audio[0].filename
 
 });
@@ -121,16 +125,61 @@ res.status(500)
 // UPDATE
 app.put(
 "/api/multimedia/:id",
+
+upload.fields([
+{name:"imagen"},
+{name:"audio"}
+]),
+
 async(req,res)=>{
 
 try{
 
+const datosActualizar = {
+
+titulo:req.body.titulo,
+
+descripcion:req.body.descripcion
+
+};
+
+if(
+req.files &&
+req.files.imagen
+){
+
+datosActualizar.imagenUrl =
+
+req.protocol +
+"://" +
+req.get("host") +
+"/uploads/" +
+req.files.imagen[0].filename;
+
+}
+
+if(
+req.files &&
+req.files.audio
+){
+
+datosActualizar.audioUrl =
+
+req.protocol +
+"://" +
+req.get("host") +
+"/uploads/" +
+req.files.audio[0].filename;
+
+}
+
 const actualizado =
+
 await Multimedia.findByIdAndUpdate(
 
 req.params.id,
 
-req.body,
+datosActualizar,
 
 {new:true}
 
